@@ -39,7 +39,7 @@ func KillAll() error {
 		case killTimeout - 1:
 			log.Printf("leaving with %d processes pending", len(pids))
 		default:
-			log.Printf("waiting for %d processes to terminate %q", len(pids), pids)
+			log.Printf("waiting for %d processes to terminate %v", len(pids), pids)
 		}
 
 		<-timer.C
