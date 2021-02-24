@@ -6,6 +6,8 @@ package proc
 
 import (
 	"bufio"
+	"io/ioutil"
+	"log"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -46,6 +48,9 @@ func List() ([]int, error) {
 		if err != nil || ppid == 0 || ppid == 2 {
 			continue
 		}
+
+		bb, err := ioutil.ReadFile(filepath.Join("/proc", name, "cmdline"))
+		log.Printf("bb = %s, err = %v", string(bb), err)
 
 		pids = append(pids, pid)
 	}
